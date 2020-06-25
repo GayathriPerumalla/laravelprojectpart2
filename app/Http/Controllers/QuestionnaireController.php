@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Questionnaire;
 
-class Questionnaire extends Controller
+class QuestionnaireController extends Controller
 {
     public function create()
     {
@@ -17,12 +18,19 @@ class Questionnaire extends Controller
         'title' => 'required',
         'purpose' => 'required',
     ]);
+     $questionnaire=new Questionnaire([
+         'title'=>$request->get('title'),
+         'purpose'=>$request->get('purpose'),
 
-    //$data['user_id']=auth()->user()->id;
+     ]);
+     $questionnaire->save();
 
-    //$questionnaire=\App\Questionnaire::create(data);
+     
+    //$data['user_id']=auth()->user[(id)];
 
-    $questionnaire =auth()->user()->questionnairees()->create($data);
+    //$vdata=\App\Questionnaire::create(data);
+
+    //$vdata =auth()->user()->questionnaires()->create($data);
     
     
     return redirect('/questionnaires/'.$questionnaire->id);
